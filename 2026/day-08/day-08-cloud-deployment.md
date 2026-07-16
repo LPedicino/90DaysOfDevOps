@@ -24,7 +24,15 @@ Deploy a web server, configure network access, and manage service logs. This exe
 ---
 
 ## Proof of Work
-Below are the proofs of the deployment on my ProLiant server:
+
+### 1. SSH Remote Access
+Establishing a secure connection to the ProLiant server via port 2222.
 ![SSH Connection](./ssh-connection.png)
+
+### 2. Docker Container Status
+Verifying that the Nginx container (`mi-servidor-web`) is running and correctly mapped to port 8080.
 ![Docker Nginx Status](./docker-nginx.png)
+
+### 3. Service Verification
+Accessing the Nginx landing page to confirm the web service is fully operational.
 ![Nginx Webpage](./nginx-webpage.png)
