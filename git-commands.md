@@ -14,3 +14,8 @@
 ## Viewing Changes
 - **git diff**: Shows changes in the working directory that are not yet staged.
 - **git log --oneline**: Displays the commit history in a compact, one-line format.
+
+## Branching & Merging
+- **git branch**: Lists, creates, or deletes branches.
+- **git checkout <branch>** or **git switch <branch>**: Switches to a different branch.
+- **git merge <branch>**: Merges the specified branch into the current branch.
