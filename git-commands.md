@@ -10,3 +10,7 @@
 - **git add <file>**: Stages changes to be committed.
 - **git commit -m "message"**: Records staged changes permanently in the history.
 - **git log**: Views the commit history.
+
+## Viewing Changes
+- **git diff**: Shows changes in the working directory that are not yet staged.
+- **git log --oneline**: Displays the commit history in a compact, one-line format.
