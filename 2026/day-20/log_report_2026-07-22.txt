@@ -1,0 +1,19 @@
+========================================
+         SERVER LOG ANALYSIS REPORT     
+========================================
+Date of Analysis : 2026-07-22
+Log File Name    : sample_log.log
+Total Lines      : 10
+Total Errors     : 5
+
+--- Top 5 Error Messages ---
+      1 -07-22 10:45:22 ERROR Connection timed out to database
+      1 -07-22 10:35:00 ERROR File not found: /app/config.json
+      1 -07-22 10:25:50 ERROR Connection timed out to database
+      1 -07-22 10:15:30 ERROR Failed to read configuration file
+      1 -07-22 10:05:12 ERROR Connection timed out to database
+
+--- Critical Events ---
+5:2026-07-22 10:20:41 CRITICAL Disk space below threshold on /var
+9:2026-07-22 10:40:15 CRITICAL Database connection lost completely
+========================================
