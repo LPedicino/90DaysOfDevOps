@@ -19,3 +19,8 @@
 - **git branch**: Lists, creates, or deletes branches.
 - **git checkout <branch>** or **git switch <branch>**: Switches to a different branch.
 - **git merge <branch>**: Merges the specified branch into the current branch.
+
+## Multi-Environment Workflows (Proliant & Main PC)
+
+* **`git fetch origin`**: Downloads objects and refs from another repository without merging them into your current working branch.
+* **`git merge <branch> --allow-unrelated-histories`**: Merges two branches that do not share a common ancestor history. Used to connect and merge the independent history from our main PC with the new setup on the Proliant server.
