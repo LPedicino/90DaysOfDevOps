@@ -6,53 +6,54 @@ Today's focus was learning how to interact with GitHub directly from the command
 ## Key Concepts & Commands
 
 ### 1. Authentication
+
 * Log in to GitHub via CLI:
   ```bash
      gh auth login
   ```
 
-## Check authentication status:
+* Check authentication status:
   ```bash
      gh auth status
   ```
 
 ### 2. Repository Management
 
-## Create a new repository:
+* Create a new repository:
   ```bash
      gh repo create <repo-name> --public --clone
   ```
-## Delete a repository:
+* Delete a repository:
   ```bash
      gh repo delete <repo-name> --confirm
   ```
 
 ### 3. Issue Management
 
-## Create an issue:
+* Create an issue:
   ```bash
      gh issue create --repo <owner>/<repo> --title "Title" --body "Description" --label "bug"
   ```
-## List open issues:
+* List open issues:
   ```bash
      gh issue list --repo <owner>/<repo>
   ```
-## View specific issue details:
+* View specific issue details:
   ```bash
      gh issue view <issue-number> --repo <owner>/<repo>
   ```
-## Close an issue:
+* Close an issue:
   ```bash
      gh issue close <issue-number> --repo <owner>/<repo>
   ```
 
 ### 4. Pull Request Workflow
 
-## Create a Pull Request:
+* Create a Pull Request:
   ```bash
      gh pr create --repo <owner>/<repo> --title "Title" --body "Body" --base main --head <branch-name>
   ```
-## Merge a Pull Request and delete the remote branch:
+* Merge a Pull Request and delete the remote branch:
   ```bash
      gh pr merge <pr-number> --repo <owner>/<repo> --merge --delete-branch
   ```
