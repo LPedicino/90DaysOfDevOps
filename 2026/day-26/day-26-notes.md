@@ -57,7 +57,3 @@ Today's focus was learning how to interact with GitHub directly from the command
   ```bash
   gh pr merge <pr-number> --repo <owner>/<repo> --merge --delete-branch
   ```
-
-
-
-
