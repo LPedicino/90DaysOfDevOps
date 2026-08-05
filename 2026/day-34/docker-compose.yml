@@ -1,0 +1,51 @@
+services:
+  web:
+    build: ./app
+    container_name: advanced_web
+    restart: on-failure
+    ports:
+      - "8090:3000"
+    environment:
+      - NODE_ENV=production
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - app-net
+    labels:
+      - "environment=development"
+
+  db:
+    image: mariadb:latest
+    container_name: advanced_db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: testdb
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - app-net
+    healthcheck:
+      test: ["CMD", "mariadb-admin", "ping", "-h", "localhost", "-u", "root", "-prootpassword"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    labels:
+      - "environment=development"
+
+  cache:
+    image: redis:alpine
+    container_name: advanced_cache
+    restart: always
+    networks:
+      - app-net
+    labels:
+      - "environment=development"
+
+volumes:
+  db_data:
+
+networks:
+  app-net:
+    driver: bridge
