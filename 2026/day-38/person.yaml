@@ -1,0 +1,11 @@
+name: "Leandro"
+role: "DevOps Learner"
+experience_years: 2
+learning: true
+tools:
+  - Docker
+  - Git
+  - Linux
+  - Nginx
+  - PostgreSQL
+hobbies: [boxing, programming, gaming]
