@@ -1,0 +1,21 @@
+name: Self-Hosted Runner Test
+
+on: [push]
+
+jobs:
+  local-job:
+    runs-on: [self-hosted, my-linux-runner]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Print machine hostname
+        run: hostname
+
+      - name: Print working directory
+        run: pwd
+
+      - name: Create local test file
+        run: |
+          echo "Hello from GitHub Actions running on my local server!" > self-hosted-test.txt
+          cat self-hosted-test.txt
