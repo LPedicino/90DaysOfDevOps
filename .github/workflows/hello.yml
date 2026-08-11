@@ -22,4 +22,4 @@ jobs:
         run: ls -la
 
       - name: Print runner operating system
-        run: uname -a  
+        run: uname -a
