@@ -45,7 +45,7 @@ jobs:
 - [Docker Hub Repository](https://hub.docker.com/r/lpedicino/devops-practice-app)
 
 ## 3. Pipeline Run Screenshot
-![Pipeline Run Screenshot](./docker-cicd-success.png)
+![Pipeline Run Screenshot](./docker-cicd.png)
 
 ## 4. The Full Journey (Git Push to Running Container)
 - **Code Commit & Push**: The developer pushes source code and configuration updates to the main branch.
