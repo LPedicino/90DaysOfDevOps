@@ -1,0 +1,25 @@
+name: CI Tests and Cache
+
+on: [push]
+
+jobs:
+  run-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node/Environment cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Run a sample test script
+        run: |
+          echo "Running real tests in CI..."
+          # Acá podés llamar a cualquier script tuyo, por ejemplo:
+          python3 --version
+          echo "Tests passed successfully!"

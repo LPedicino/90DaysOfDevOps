@@ -1,0 +1,32 @@
+name: Artifacts Pipeline
+
+on: [push]
+
+jobs:
+  generate-artifact:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create a log file
+        run: |
+          mkdir -p output
+          echo "Test report generated on $(date)" > output/test-report.log
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: my-test-report
+          path: output/test-report.log
+
+  consume-artifact:
+    needs: generate-artifact
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: my-test-report
+
+      - name: Print artifact contents
+        run: |
+          echo "Reading downloaded artifact:"
+          cat test-report.log
