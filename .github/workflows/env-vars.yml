@@ -1,0 +1,22 @@
+name: Env Vars Pipeline
+
+on: [push]
+
+env:
+  APP_NAME: myapp
+
+jobs:
+  env-job:
+    runs-on: ubuntu-latest
+    env:
+      ENVIRONMENT: staging
+    steps:
+      - name: Print Env Vars and Context
+        env:
+          VERSION: 1.0.0
+        run: |
+          echo "APP_NAME: $APP_NAME"
+          echo "ENVIRONMENT: $ENVIRONMENT"
+          echo "VERSION: $VERSION"
+          echo "Commit SHA: ${{ github.sha }}"
+          echo "Actor: ${{ github.actor }}"

@@ -1,0 +1,23 @@
+name: Smart Pipeline
+
+on: [push]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Linting..."
+  
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Testing..."
+
+  summary:
+    needs: [lint, test]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          echo "Branch: ${{ github.ref }}"
+          echo "Commit Message: ${{ github.event.head_commit.message }}"

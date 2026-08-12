@@ -1,0 +1,20 @@
+name: Job Outputs Pipeline
+
+on: [push]
+
+jobs:
+  set-output:
+    runs-on: ubuntu-latest
+    outputs:
+      today: ${{ steps.step1.outputs.date }}
+    steps:
+      - name: Set Date
+        id: step1
+        run: echo "date=$(date)" >> $GITHUB_OUTPUT
+
+  read-output:
+    needs: set-output
+    runs-on: ubuntu-latest
+    steps:
+      - name: Read Date
+        run: echo "Date from previous job is ${{ needs.set-output.outputs.today }}"
