@@ -9,3 +9,6 @@ Artifacts are used to pass data or build outputs (like compiled binaries, test r
 ## 3. Caching Notes (`actions/cache`)
 - **What is cached?** Dependencies and directories (like `node_modules/`, Python virtual environments, or package manager caches).
 - **Where is it stored?** In GitHub's cache storage infrastructure associated with the repository, speeding up subsequent runs by avoiding full downloads.
+
+## Screenshot of CI Test Run
+![CI Test Success](./ci-test-success.png)
