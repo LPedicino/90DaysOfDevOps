@@ -192,4 +192,4 @@ External systems (such as Datadog or PagerDuty monitoring alerts, CMS publishing
 ---
 
 ## PR Validation Screenshot
-![PR Checks Screenshot](./pr-checks.png)
+![Advanced Triggers Screenshot](./advanced-triggers.png)
