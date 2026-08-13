@@ -1,0 +1,51 @@
+name: Reusable Build Pipeline
+
+on:
+  workflow_call:
+    inputs:
+      app_name:
+        description: 'Name of the application'
+        required: true
+        type: string
+      environment:
+        description: 'Target environment'
+        required: true
+        type: string
+        default: 'staging'
+    secrets:
+      docker_token:
+        description: 'Docker Hub Token'
+        required: true
+    outputs:
+      build_version:
+        description: 'Generated build version'
+        value: ${{ jobs.build.outputs.version }}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.gen_version.outputs.VERSION }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Print build details
+        run: |
+          echo "Building ${{ inputs.app_name }} for environment: ${{ inputs.environment }}"
+
+      - name: Check secret status
+        run: |
+          if [ -n "${{ secrets.DOCKER_TOKEN }}" ]; then
+            echo "Docker token is set: true"
+          else
+            echo "Docker token is set: false"
+          fi
+
+      - name: Generate version string
+        id: gen_version
+        run: |
+          SHORT_SHA=$(git rev-parse --short HEAD)
+          VERSION="v1.0-$SHORT_SHA"
+          echo "VERSION=$VERSION" >> $GITHUB_OUTPUT
+          echo "Generated version: $VERSION"

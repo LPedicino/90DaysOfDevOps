@@ -1,0 +1,35 @@
+name: "Setup and Greet"
+description: "Custom composite action to greet and show runner details"
+inputs:
+  name:
+    description: "Who to greet"
+    required: true
+    default: "DevOps Engineer"
+  language:
+    description: "Greeting language (en/es)"
+    required: false
+    default: "en"
+outputs:
+  greeted:
+    description: "Indicates success"
+    value: "true"
+runs:
+  using: "composite"
+  steps:
+    - name: Greet user
+      shell: bash
+      run: |
+        LANG="${{ inputs.language }}"
+        NAME="${{ inputs.name }}"
+        if [ "$LANG" = "es" ]; then
+          echo "¡Hola, $NAME! Bienvenido al pipeline."
+        else
+          echo "Hello, $NAME! Welcome to the pipeline."
+        fi
+
+    - name: Print Date and OS
+      shell: bash
+      run: |
+        echo "Current date: $(date)"
+        echo "Runner OS: $RUNNER_OS"
+        echo "greeting-status=true" >> $GITHUB_OUTPUT
