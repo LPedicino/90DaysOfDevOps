@@ -1,0 +1,21 @@
+name: Smart Triggers
+
+on:
+  push:
+    branches:
+      - main
+      - 'release/*'
+    paths:
+      - 'src/**'
+      - 'app/**'
+    paths-ignore:
+      - '*.md'
+      - 'docs/**'
+
+jobs:
+  smart-build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run on source/app code changes only
+        run: |
+          echo "This pipeline runs only when changes are made inside src/ or app/ on main or release branches, ignoring markdown and docs."

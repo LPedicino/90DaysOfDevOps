@@ -1,0 +1,53 @@
+name: PR Validation Gates
+
+on:
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  file-size-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Check for files larger than 1MB
+        run: |
+          echo "Checking file sizes..."
+          # Busca archivos mayores a 1MB en el commit actual del PR
+          LARGE_FILES=$(find . -type f -not -path '*/.*' -size +1M)
+          if [ -n "$LARGE_FILES" ]; then
+            echo "Error: Found files larger than 1MB:"
+            echo "$LARGE_FILES"
+            exit 1
+          else
+            echo "All files are within the size limit."
+          fi
+
+  branch-name-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Validate Branch Name
+        run: |
+          BRANCH_NAME="${{ github.head_ref }}"
+          echo "Branch name: $BRANCH_NAME"
+          if [[ ! "$BRANCH_NAME" =~ ^(feature|fix|docs)/ ]]; then
+            echo "Error: Branch name '$BRANCH_NAME' does not follow the convention (feature/*, fix/*, docs/*)."
+            exit 1
+          else
+            echo "Branch name is valid."
+          fi
+
+  pr-body-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check PR Description
+        run: |
+          BODY="${{ github.event.pull_request.body }}"
+          if [ -z "$BODY" ] || [ "$BODY" = "null" ]; then
+            echo "Warning: The PR description is empty. Please add a summary of your changes."
+          else
+            echo "PR description looks good."
+          fi

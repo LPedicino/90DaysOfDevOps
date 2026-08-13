@@ -1,0 +1,21 @@
+name: Deploy After Tests
+
+on:
+  workflow_run:
+    workflows: ["Run Tests"]
+    types: [completed]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check upstream workflow status
+        run: |
+          CONCLUSION="${{ github.event.workflow_run.conclusion }}"
+          echo "Upstream tests conclusion: $CONCLUSION"
+          if [ "$CONCLUSION" != "success" ]; then
+            echo "Error: Upstream tests failed. Aborting deployment."
+            exit 1
+          else
+            echo "Tests passed! Proceeding with deployment..."
+          fi
