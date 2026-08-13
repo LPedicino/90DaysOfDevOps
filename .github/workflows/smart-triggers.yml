@@ -8,9 +8,6 @@ on:
     paths:
       - 'src/**'
       - 'app/**'
-    paths-ignore:
-      - '*.md'
-      - 'docs/**'
 
 jobs:
   smart-build:
