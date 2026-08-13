@@ -5,7 +5,7 @@ on:
     types: [deploy-request]
 
 jobs:
-    external-deploy:
+  external-deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Handle external dispatch
