@@ -11,8 +11,18 @@ jobs:
     with:
       run_tests: true
 
+  dependency-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Check Dependencies for Vulnerabilities
+        uses: actions/dependency-review-action@v4
+        with:
+          fail-on-severity: critical
+
   pr-comment:
-    needs: call-build-test
+    needs: [call-build-test, dependency-check]
     runs-on: ubuntu-latest
     steps:
       - name: Print PR Summary
