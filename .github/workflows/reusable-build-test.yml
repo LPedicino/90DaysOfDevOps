@@ -1,0 +1,49 @@
+name: Reusable Build and Test
+
+on:
+  workflow_call:
+    inputs:
+      node_version:
+        description: 'Node.js version'
+        required: false
+        default: '20'
+        type: string
+      run_tests:
+        description: 'Run tests flag'
+        required: false
+        default: true
+        type: boolean
+    outputs:
+      test_result:
+        description: 'Result of the test execution'
+        value: ${{ jobs.build-test.outputs.test_res }}
+
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+    outputs:
+      test_res: ${{ steps.set-output.outputs.result }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ inputs.node_version }}
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run tests
+        if: ${{ inputs.run_tests == true }}
+        run: npm test
+
+      - name: Set test result output
+        id: set-output
+        run: |
+          if [ "${{ inputs.run_tests }}" = "true" ]; then
+            echo "result=passed" >> $GITHUB_OUTPUT
+          else
+            echo "result=skipped" >> $GITHUB_OUTPUT
+          fi
