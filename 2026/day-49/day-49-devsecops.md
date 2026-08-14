@@ -29,3 +29,4 @@ Always active
 
 ## Pipeline Security Scan Output
 
+![Trivy Scan Success](trivy-scan-success.png)
