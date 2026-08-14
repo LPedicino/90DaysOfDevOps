@@ -10,7 +10,7 @@ jobs:
     with:
       run_tests: true
 
-  call-docker-build:
+call-docker-build:
     needs: call-build-test
     uses: ./.github/workflows/reusable-docker.yml
     with:
