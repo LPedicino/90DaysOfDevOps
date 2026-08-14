@@ -10,15 +10,13 @@ jobs:
     with:
       run_tests: true
 
-call-docker-build:
+  call-docker-build:
     needs: call-build-test
     uses: ./.github/workflows/reusable-docker.yml
     with:
       image_name: 'myapp'
       tag: 'latest'
-    secrets:
-      docker_username: ${{ secrets.DOCKERHUB_USERNAME }}
-      docker_token: ${{ secrets.DOCKERHUB_TOKEN }}
+    secrets: inherit
 
   deploy:
     needs: call-docker-build
