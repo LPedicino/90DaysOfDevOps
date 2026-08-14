@@ -16,6 +16,9 @@ All workflow configurations are implemented in `.github/workflows/`:
 ## Docker Hub Image Link
 - [Docker Hub - leapedicino](https://hub.docker.com/u/leapedicino)
 
+## Pipeline Success
+![Pipeline Success](./main-pipeline-success.png)
+
 ## What to Improve Next
 - Implement automated vulnerability scanning (DevSecOps) using Trivy on built images.
 - Add notification alerts (e.g., Slack or Discord webhooks) on pipeline failures.
