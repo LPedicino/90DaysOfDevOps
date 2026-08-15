@@ -64,14 +64,12 @@ We chose **`kind`** for this local setup because it uses Docker containers as cl
 kubectl cluster-info
 kubectl get nodes
 ```
+![Cluster Nodes](kubectl-getnodes.png)
 
 ### Control Plane Components in kube-system
 ```bash
 kubectl get pods -n kube-system
 ```
-
-## kubectl get nodes output
-![Cluster Nodes](kubectl-getnodes.png)
-
-## kubectl get pods -n kube-system output
 ![Control Plane Pods](kubectl-getpods.png)
+
+
