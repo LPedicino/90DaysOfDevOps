@@ -8,6 +8,7 @@ Kubernetes was created by Google based on their years of experience running prod
 
 ## Kubernetes Architecture Diagram
 
+```text
 +-----------------------------------------------------------------+
 |                       CONTROL PLANE                             |
 |                                                                 |
@@ -37,6 +38,7 @@ v
 |  |             Container Runtime              |                 |
 |  +--------------------------------------------+                 |
 +-----------------------------------------------------------------+
+```
 
 ### Component Breakdown
 1. **API Server:** The frontend and entry point of the cluster; all administrative commands and requests go through it.
