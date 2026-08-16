@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: live-pod
+spec:
+  containers:
+  - name: sleeper
+    image: busybox:latest
+    command: ["sh", "-c", "while true; do cat /etc/config/message; sleep 5; done"]
+    volumeMounts:
+    - name: config-volume
+      mountPath: /etc/config
+  volumes:
+  - name: config-volume
+    configMap:
+      name: live-config
+  restartPolicy: Never
